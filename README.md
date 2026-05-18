@@ -8,7 +8,7 @@ Aplicación web local para crear portadas de YouTube 1920x1080 como generador de
 npm run dev
 ```
 
-Abre `http://localhost:5173` y trabaja con archivos locales en tu navegador.
+El servidor local se ejecuta únicamente con Node.js. Abre `http://localhost:5173` y trabaja con archivos locales en tu navegador.
 
 ## Flujo
 
