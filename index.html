@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Thumbnail AI Studio</title>
+    <link rel="stylesheet" href="./src/styles.css" />
+  </head>
+  <body>
+    <header class="hero">
+      <div>
+        <p class="eyebrow">Editor local sin APIs</p>
+        <h1>Thumbnail AI Studio</h1>
+      </div>
+      <p class="safe-note">No guarda credenciales, no controla navegadores, no automatiza sesiones y no hace scraping. Tú abres ChatGPT, Gemini o DeepSeek e inicias sesión manualmente.</p>
+    </header>
+
+    <main class="app-shell">
+      <aside class="panel stack">
+        <section class="card">
+          <h2>1. Datos del video</h2>
+          <label>Título del video<input id="videoTitle" placeholder="Ej: Sobreviví 100 días en Minecraft" /></label>
+          <label>Categoría<input id="category" value="Gaming" /></label>
+          <label>Estilo visual<textarea id="visualStyle">MrBeast extremo, colores neón, alto contraste, emoción exagerada</textarea></label>
+          <label>Descripción breve<textarea id="shortDescription" placeholder="Resume el gancho, reto o promesa del video"></textarea></label>
+        </section>
+
+        <section class="card">
+          <h2>2. Archivos locales</h2>
+          <label class="drop">Fondo generado por IA<input id="generatedUpload" type="file" accept="image/*" /></label>
+          <label class="drop">Foto personal / personaje<input id="personUpload" type="file" accept="image/*" /></label>
+          <label class="drop">Personaje: quitar fondo blanco/verde<input id="personBgUpload" type="file" accept="image/*" /></label>
+          <label class="drop">Logo del canal<input id="logoUpload" type="file" accept="image/*" /></label>
+          <p class="hint">La eliminación de fondo es local y básica: funciona mejor con fondos blancos o verdes. También puedes subir PNG transparente.</p>
+        </section>
+
+        <section class="card">
+          <h2>3. Texto CTR</h2>
+          <label>Texto editable en la imagen<input id="viralText" class="viral-input" value="NO LO CREERÁS" /></label>
+          <button id="addTextBtn" class="primary">Agregar texto</button>
+        </section>
+      </aside>
+
+      <section class="workspace stack">
+        <div class="toolbar card horizontal">
+          <button id="autoMergeBtn" class="primary">Fusionar automáticamente</button>
+          <button id="exportPngBtn">Descargar PNG 1920x1080</button>
+          <button id="exportJpgBtn">Descargar JPG 1920x1080</button>
+        </div>
+
+        <div class="canvas-card">
+          <canvas id="thumbnailCanvas" width="1920" height="1080" aria-label="Editor de miniatura 1920 por 1080"></canvas>
+        </div>
+
+        <div class="editor-grid">
+          <section class="card">
+            <h2>Controles visuales</h2>
+            <div class="button-grid">
+              <button id="centerBtn">Centrar</button>
+              <button id="fitBtn">Ajustar a portada</button>
+              <button id="resetBtn">Resetear posición</button>
+              <button id="duplicateBtn">Duplicar</button>
+              <button id="frontBtn">Enviar al frente</button>
+              <button id="backBtn">Enviar al fondo</button>
+              <button id="lockBtn">Bloquear/desbloquear</button>
+              <button id="deleteBtn" class="danger">Eliminar</button>
+            </div>
+            <label>Opacidad <span id="opacityValue">100%</span><input id="opacityRange" type="range" min="0" max="1" step="0.05" value="1" /></label>
+            <label>Rotación <span id="rotationValue">0°</span><input id="rotationRange" type="range" min="-180" max="180" value="0" /></label>
+            <label>Recorte horizontal <span id="cropValue">0%</span><input id="cropRange" type="range" min="0" max="45" value="0" /></label>
+            <div class="button-grid effects">
+              <button data-effect="shadow">Sombra</button>
+              <button data-effect="glow">Glow</button>
+              <button data-effect="outline">Contorno</button>
+              <button data-effect="border">Borde</button>
+            </div>
+          </section>
+
+          <section class="card">
+            <h2>Capas</h2>
+            <div id="layersList" class="layers"></div>
+            <p class="hint">Arrastra objetos en el canvas. Usa rueda/gestos para precisión desde controles. Las guías se activan al acercarte al centro.</p>
+          </section>
+        </div>
+
+        <section class="card">
+          <h2>Prompts y descripción SEO</h2>
+          <div id="promptGrid" class="prompt-grid"></div>
+          <article class="prompt-box wide">
+            <h3>Descripción SEO para YouTube</h3>
+            <textarea id="seoText" readonly></textarea>
+            <button data-copy-target="seoText" class="copy-btn">Copiar descripción SEO</button>
+          </article>
+        </section>
+
+        <section class="card">
+          <h2>Historial local</h2>
+          <div id="historyList" class="history"></div>
+        </section>
+      </section>
+    </main>
+
+    <script type="module" src="./src/main.js"></script>
+  </body>
+</html>
