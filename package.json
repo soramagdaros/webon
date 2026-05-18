@@ -1,0 +1,11 @@
+{
+  "name": "thumbnail-ai-studio",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "python3 -m http.server 5173",
+    "preview": "python3 -m http.server 4173",
+    "build": "node scripts/check-static-app.mjs"
+  }
+}
